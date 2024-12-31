@@ -9,22 +9,6 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
     const [messages, setMessages] = useState([]);
     const lastUpdateTimeRef = useRef(Date.now()); // To track the last update time
 
-    const url = 'https://api.coinbase.com/api/v3/brokerage/market/products';
-
- fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(JSON.stringify(data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
     useEffect(() => {
         // Generate a signature if API key and secret are provided
         const generateAuthMessage = () => {
@@ -68,11 +52,14 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
         };
 
         ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-
-            // Throttle updates to every 3 seconds
             const now = Date.now();
-            if (now - lastUpdateTimeRef.current >= 1000) {
+            const readableTime = new Date().toUTCString()
+            const data = JSON.parse(event.data);
+            data.timestamp = readableTime;
+
+            // Throttle updates displayed:
+            const dataRefreshDelayInMsec = 2000;
+            if (now - lastUpdateTimeRef.current >= dataRefreshDelayInMsec) {
                 setMessages((prev) => [...prev, data]);
                 lastUpdateTimeRef.current = now;
             }
@@ -100,9 +87,9 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
             <h1>Coinbase WebSocket Feed</h1>
             <h2>Product: {productId}</h2>
             <ul>
-                {messages.slice(-10).map((message, index) => (
+                {messages.slice(-5).reverse().map((message, index) => (
                     <li key={index}>
-                        {message.product_id} at ${message.price}
+                        {message.product_id} at ${message.price} @ {message.timestamp}
                     </li>
                 ))}
             </ul>
