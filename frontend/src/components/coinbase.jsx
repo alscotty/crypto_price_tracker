@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import CryptoJS from "crypto-js";
+import DynamicGraph from "./dynamicGraph";
 
 const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
     const privateKey = "todo";
@@ -88,6 +89,7 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
                     </li>
                 ))}
             </ul>
+            <DynamicGraph dataPoints={messages} />
         </div>
     );
 };

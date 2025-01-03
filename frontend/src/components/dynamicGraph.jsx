@@ -1,8 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
+  LinearScale,
   PointElement,
   LineElement,
   Title,
@@ -21,25 +22,19 @@ ChartJS.register(
   Legend
 );
 
-const DynamicGraph = () => {
-  const [dataPoints, setDataPoints] = useState([]); // State to hold data points
+const DynamicGraph = ({ dataPoints }) => {
   const chartRef = useRef(null); // Reference to chart instance
-
-  // Function to add a new data point
-  const addDataPoint = (newPoint) => {
-    setDataPoints((prevPoints) => [...prevPoints, newPoint]);
-  };
 
   // Prepare chart data and options
   const chartData = {
-    labels: dataPoints.map((point) => point.timestamp.toLocaleTimeString()), // Format timestamps as labels
+    labels: dataPoints.map((point) => point.timestamp),
     datasets: [
       {
-        label: "Value Over Time",
-        data: dataPoints.map((point) => parseFloat(point.value)),
+        label: "Price Over Time",
+        data: dataPoints.map((point) => parseFloat(point.price)),
         borderColor: dataPoints.map((point, index) => {
           if (index === 0) return "green"; // Initial point
-          return parseFloat(point.value) >= parseFloat(dataPoints[index - 1].value) ? "green" : "red";
+          return parseFloat(point.price) >= parseFloat(dataPoints[index - 1].price) ? "green" : "red";
         }),
         backgroundColor: "rgba(0, 123, 255, 0.1)",
         tension: 0.4,
@@ -65,16 +60,15 @@ const DynamicGraph = () => {
       y: {
         title: {
           display: true,
-          text: "Value",
+          text: "Price in USD",
         },
       },
     },
   };
 
-
   return (
     <div>
-      <h2>Dynamic Graph</h2>
+      <h2>Live Dynamic Graph</h2>
       <Line ref={chartRef} data={chartData} options={chartOptions} />
     </div>
   );
