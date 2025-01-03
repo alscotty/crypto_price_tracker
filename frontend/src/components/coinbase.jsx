@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import CryptoJS from "crypto-js";
 
 const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
-    const apiKey = "Import me as env variable";
     const privateKey = "todo";
 
     const [_socket, setSocket] = useState(null);
@@ -18,7 +17,6 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
 
             return {
                 type: "subscribe",
-                key: apiKey,
                 signature,
                 timestamp,
             };
@@ -42,11 +40,8 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
                 ],
             };
 
-            // If API key and secret are provided, add authentication message
-            if (apiKey) {
-                const authMessage = generateAuthMessage();
-                ws.send(JSON.stringify(authMessage));
-            }
+            const authMessage = generateAuthMessage();
+            ws.send(JSON.stringify(authMessage));
 
             ws.send(JSON.stringify(subscribeMessage));
         };
@@ -76,7 +71,7 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
         return () => {
             ws.close();
         };
-    }, [apiKey, productId]);
+    }, [productId]);
 
     if (messages.length === 0) {
         return <span>Setting up Coinbase WebSocket Feed...</span>;

@@ -1,0 +1,21 @@
+{
+    "best_ask": "96399.41",
+    "best_ask_size": "0.00204261",
+    "best_bid": "96399.40",
+    "best_bid_size": "0.00115044",
+    "high_24h": "97776.99",
+    "last_size": "0.00003329",
+    "low_24h": "95849.42",
+    "open_24h": "95999.87",
+    "price": "96399.41",
+    "product_id": "BTC-USD",
+    "sequence": 95837647632,
+    "side": "buy",
+    "time": "2025-01-03T08:21:18.520254Z",
+    "timestamp": "Fri, 03 Jan 2025 08:21:18 GMT",
+    "trade_id": 752613143,
+    "type": "ticker",
+    "volume_24h": "10299.12808625",
+    "volume_30d": "386528.17107265"
+  }
+  
