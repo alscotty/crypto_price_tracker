@@ -1,5 +1,5 @@
 import './App.css';
-import CoinbaseWebSocket from './components/coinbase.jsx'
+import CoinbaseWebSocket from './components/coinbaseHome.jsx'
 
 function App() {
   return (

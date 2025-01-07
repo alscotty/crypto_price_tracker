@@ -23,7 +23,7 @@ ChartJS.register(
 );
 
 const DynamicGraph = ({ dataPoints }) => {
-  const chartRef = useRef(null); 
+  const chartRef = useRef(null); // Reference to chart instance
 
   const chartData = {
     labels: dataPoints.map((point) => point.timestamp),
@@ -41,12 +41,22 @@ const DynamicGraph = ({ dataPoints }) => {
     ],
   };
 
+  const allTextColor = 'white';
+
   const chartOptions = {
     responsive: true,
     plugins: {
       legend: {
         display: true,
         position: "top",
+        labels: {
+          color: allTextColor, // Inherit color from global CSS
+        },
+      },
+      title: {
+        display: true,
+        text: "Live Dynamic Graph",
+        color: allTextColor, // Inherit color from global CSS
       },
     },
     scales: {
@@ -54,12 +64,20 @@ const DynamicGraph = ({ dataPoints }) => {
         title: {
           display: true,
           text: "Timestamp",
+          color: allTextColor, // Inherit color from global CSS
+        },
+        ticks: {
+          color: allTextColor, // Inherit color from global CSS
         },
       },
       y: {
         title: {
           display: true,
           text: "Price in USD",
+          color: allTextColor, // Inherit color from global CSS
+        },
+        ticks: {
+          color: allTextColor, // Inherit color from global CSS
         },
       },
     },

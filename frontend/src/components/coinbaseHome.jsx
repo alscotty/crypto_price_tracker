@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import CryptoJS from "crypto-js";
 import DynamicGraph from "./dynamicGraph";
+import Analytics from './analytics';
 
 // import { fetchCoinBaseProductsList } from '../util/productsList'
 // useEffect(() => {
@@ -66,7 +67,7 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
 
             // Throttle updates displayed:
             const dataRefreshDelayInMsec = 2000;
-            if (now - lastUpdateTimeRef.current >= dataRefreshDelayInMsec) {
+            if (now - lastUpdateTimeRef.current >= dataRefreshDelayInMsec && data.price) {
                 setMessages((prev) => [...prev, data]);
                 lastUpdateTimeRef.current = now;
             }
@@ -94,12 +95,13 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
             <h1>Coinbase WebSocket Feed</h1>
             <h2>Product: {productId}</h2>
             <ul>
-                {messages.slice(-5).reverse().map((message, index) => (
+                {messages.slice(-1).reverse().map((message, index) => (
                     <li key={index}>
                         {message.product_id} at ${message.price} @ {message.timestamp}
                     </li>
                 ))}
             </ul>
+            <Analytics messages={messages} />
             <DynamicGraph dataPoints={messages} />
         </div>
     );
