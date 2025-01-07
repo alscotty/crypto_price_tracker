@@ -50,13 +50,13 @@ const DynamicGraph = ({ dataPoints }) => {
         display: true,
         position: "top",
         labels: {
-          color: allTextColor, // Inherit color from global CSS
+          color: allTextColor, 
         },
       },
       title: {
         display: true,
         text: "Live Dynamic Graph",
-        color: allTextColor, // Inherit color from global CSS
+        color: allTextColor, 
       },
     },
     scales: {
@@ -64,20 +64,20 @@ const DynamicGraph = ({ dataPoints }) => {
         title: {
           display: true,
           text: "Timestamp",
-          color: allTextColor, // Inherit color from global CSS
+          color: allTextColor, 
         },
         ticks: {
-          color: allTextColor, // Inherit color from global CSS
+          color: allTextColor, 
         },
       },
       y: {
         title: {
           display: true,
           text: "Price in USD",
-          color: allTextColor, // Inherit color from global CSS
+          color: allTextColor, 
         },
         ticks: {
-          color: allTextColor, // Inherit color from global CSS
+          color: allTextColor, 
         },
       },
     },
