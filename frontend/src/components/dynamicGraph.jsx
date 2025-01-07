@@ -23,9 +23,8 @@ ChartJS.register(
 );
 
 const DynamicGraph = ({ dataPoints }) => {
-  const chartRef = useRef(null); // Reference to chart instance
+  const chartRef = useRef(null); 
 
-  // Prepare chart data and options
   const chartData = {
     labels: dataPoints.map((point) => point.timestamp),
     datasets: [

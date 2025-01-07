@@ -2,12 +2,23 @@ import React, { useEffect, useState, useRef } from "react";
 import CryptoJS from "crypto-js";
 import DynamicGraph from "./dynamicGraph";
 
+// import { fetchCoinBaseProductsList } from '../util/productsList'
+// useEffect(() => {
+//     fetchCoinBaseProductsList()
+//         .then(products => {
+//             console.log({ products })
+//         })
+
+// }, [])
+
+
 const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
     const privateKey = "todo";
 
     const [_socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([]);
     const lastUpdateTimeRef = useRef(Date.now()); // To track the last update time
+
 
     useEffect(() => {
         // Generate a signature if API key and secret are provided
