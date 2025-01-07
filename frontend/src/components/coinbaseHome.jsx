@@ -12,6 +12,7 @@ import Analytics from './analytics';
 
 // }, [])
 
+const DATE_REFRESH_DELAY_IN_MSEC = 2000;
 
 const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
     const privateKey = "todo";
@@ -66,9 +67,9 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
             data.timestamp = readableTime;
 
             // Throttle updates displayed:
-            const dataRefreshDelayInMsec = 2000;
-            if (now - lastUpdateTimeRef.current >= dataRefreshDelayInMsec && data.price) {
-                setMessages((prev) => [...prev, data]);
+            if (now - lastUpdateTimeRef.current >= DATE_REFRESH_DELAY_IN_MSEC && data.price) {
+                // keeping message lenth constant, limit 20 points
+                setMessages((prev) => [...prev.slice(-19), data]);
                 lastUpdateTimeRef.current = now;
             }
         };
