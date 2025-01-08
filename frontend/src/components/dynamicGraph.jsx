@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { LOOKBACK_PERIOD } from '../util/sharedConstants';
 
 // Register Chart.js components
 ChartJS.register(
@@ -43,8 +44,8 @@ const DynamicGraph = ({ dataPoints }) => {
 
   let trendlineData = [];
   let trendlineColor = "green"; // Default trendline color
-  if (dataPoints.length >= 10) {
-    const lastTenDataPoints = dataPoints.slice(-10);
+  if (dataPoints.length >= LOOKBACK_PERIOD) {
+    const lastTenDataPoints = dataPoints.slice(-LOOKBACK_PERIOD);
     trendlineData = calculateTrendline(lastTenDataPoints);
     trendlineColor = trendlineData[trendlineData.length - 1] >= trendlineData[0] ? "green" : "red";
   }
@@ -66,19 +67,19 @@ const DynamicGraph = ({ dataPoints }) => {
       },
       ...(trendlineData.length > 0
         ? [
-            {
-              label: "Trendline (Last 10 Points)",
-              data: [
-                ...Array(dataPoints.length - 10).fill(null), // Empty points for alignment
-                ...trendlineData, // Trendline data for the last 10 points
-              ],
-              borderColor: trendlineColor, // Updated to use trendlineColor
-              borderDash: [5, 5], // Dashed line
-              borderWidth: 2,
-              tension: 0, // Straight line
-              pointRadius: 0, // No points
-            },
-          ]
+          {
+            label: `Trendline (Last ${LOOKBACK_PERIOD} Points)`,
+            data: [
+              ...Array(dataPoints.length - LOOKBACK_PERIOD).fill(null), // Empty points for alignment
+              ...trendlineData, // Trendline data for the last 10 points
+            ],
+            borderColor: trendlineColor, // Updated to use trendlineColor
+            borderDash: [5, 5], // Dashed line
+            borderWidth: 2,
+            tension: 0, // Straight line
+            pointRadius: 0, // No points
+          },
+        ]
         : []),
     ],
   };

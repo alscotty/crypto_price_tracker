@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import CryptoJS from "crypto-js";
 import DynamicGraph from "./dynamicGraph";
 import Analytics from './analytics';
-
+import { DATE_REFRESH_DELAY_IN_MSEC } from '../util/sharedConstants';
+import '../styling/coinbaseHome.css';
 // import { fetchCoinBaseProductsList } from '../util/productsList'
 // useEffect(() => {
 //     fetchCoinBaseProductsList()
@@ -11,8 +12,6 @@ import Analytics from './analytics';
 //         })
 
 // }, [])
-
-const DATE_REFRESH_DELAY_IN_MSEC = 2000;
 
 const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
     const privateKey = "todo";
@@ -93,16 +92,21 @@ const CoinbaseWebSocket = ({ productId = "BTC-USD" }) => {
 
     return (
         <div>
-            <h1>Coinbase WebSocket Feed</h1>
-            <h2>Product: {productId}</h2>
-            <ul>
-                {messages.slice(-1).reverse().map((message, index) => (
-                    <li key={index}>
-                        {message.product_id} at ${message.price} @ {message.timestamp}
-                    </li>
-                ))}
-            </ul>
-            <Analytics messages={messages} />
+            <div className="flex">
+                <div>
+                    <h1>Coinbase WebSocket Feed</h1>
+                    <h2>Product: {productId}</h2>
+                    <ul>
+                        {messages.slice(-1).reverse().map((message, index) => (
+                            <li key={index}>
+                                {message.product_id} at ${message.price} @ {message.timestamp}
+                            </li>
+                        ))}
+                    </ul>
+                    <Analytics messages={messages} />
+                </div>
+                <h3>Bot Transactions</h3>
+            </div>
             <DynamicGraph dataPoints={messages} />
         </div>
     );
