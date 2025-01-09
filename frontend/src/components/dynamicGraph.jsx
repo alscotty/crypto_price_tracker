@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { LOOKBACK_PERIOD } from '../util/sharedConstants';
+import '../styling/dynamicGraph.css';
 
 // Register Chart.js components
 ChartJS.register(
@@ -129,7 +130,7 @@ const DynamicGraph = ({ dataPoints }) => {
   return (
     <div>
       <h2>Live Dynamic Graph with Trendline</h2>
-      <Line ref={chartRef} data={chartData} options={chartOptions} />
+      <Line ref={chartRef} data={chartData} options={chartOptions} className='dynamic-graph'/>
     </div>
   );
 };

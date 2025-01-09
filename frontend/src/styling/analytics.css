@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex > div {
+    padding: 10px;
+    border: 2px solid lightblue; /* Add a bright yellow border */
+    border-radius: 5px;
+    margin: 5px;
+}
