@@ -8,6 +8,7 @@ const getNum = (message) => {
 const Analytics = ({ messages }) => {
     const [startingPriceMessage, setStartingPriceMessage] = useState();
     const [recentPercentChange, setRecentPercentChange] = useState();
+    
 
     useEffect(() => {
         if (messages.length === 1) {
