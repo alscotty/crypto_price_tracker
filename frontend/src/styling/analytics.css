@@ -9,3 +9,55 @@
     border-radius: 5px;
     margin: 5px;
 }
+
+.analytics-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #000; /* Black background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff; /* White text */
+}
+
+.analytics-section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.analytics-section h3 {
+    margin-bottom: 10px;
+    color: #fff; /* White text */
+}
+
+.analytics-section span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.analytics-section form {
+    margin-top: 10px;
+}
+
+.analytics-section input {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333; /* Darker input background */
+    color: #fff; /* White text */
+}
+
+.analytics-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.analytics-section li {
+    background-color: #333; /* Darker list item background */
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff; /* White text */
+}
