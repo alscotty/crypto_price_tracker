@@ -6,6 +6,7 @@ A work-in-progress crypto price tracker designed for testing purposes. This proj
 - **Live Price Tracking:** Real-time price data from the Coinbase WebSocket API.
 - **Interactive Graph:** Visualize price changes dynamically using a live tracker graph.
 - **Simulated Trades:** Test trade logic by "buying" and "selling" virtual assets.
+- **Bot Buy/Sell Behavior:** Automated transactions.
 - **Algorithmic Testing (Coming Soon):** Future updates will include support for algorithmic trading strategy tests.
 
 ## Technologies Used
@@ -40,20 +41,17 @@ Start the development server with:
    ```bash
    npm run dev
    ```
-This will run the project in development mode. Open http://localhost:3000 in your browser to view it.
+This will run the project in development mode. Open [http://localhost:3000](http://localhost:3000) in your browser to view it.
 
 ### Simulated Trades
 - Use the interface to "buy" or "sell" virtual crypto assets.
 - Track your trade history and portfolio value over time.
 - This feature is purely for testing and simulation purposes—no real transactions are made.
 
-## Roadmap
-- Fetch live crypto prices from Coinbase WebSocket API
-- Display prices on a live graph
-- Add simulated trading functionality
-- Implement algorithmic trading tests
-- Expand to include multiple cryptocurrencies
-- Add historical data visualization
+## Roadmap 
+- Implement algorithmic trading tests.
+- Expand to include multiple cryptocurrencies.
+- Add historical data visualization.
 
 ## Contributing
 Contributions are welcome! Feel free to fork the repository, make changes, and submit a pull request.
